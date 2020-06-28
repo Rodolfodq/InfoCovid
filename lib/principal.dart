@@ -62,6 +62,31 @@ class PaginaPrincipal extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: (){
+                      Navigator.pushNamed(context, '/paginaAcompanhamento');
+                    },
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          child: Image.asset('images/acompanhamento.png'),
+                          color: Colors.black,
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Text("ACOMPANHAMENTO",
+                            style: TextStyle(
+                              backgroundColor: Colors.black,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 22.0,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){
                       Navigator.pushNamed(context, '/paignaPrevencao');
                     },
                     child: Stack(

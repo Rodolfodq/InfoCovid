@@ -1,3 +1,4 @@
+//import 'dart:js';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:covidproject/principal.dart';
@@ -6,6 +7,8 @@ import 'package:covidproject/sintomas.dart';
 import 'package:covidproject/prevencao.dart';
 import 'package:covidproject/dados.dart';
 import 'package:covidproject/graficos.dart';
+import 'package:covidproject/MeuAcompanhamento.dart';
+import 'package:covidproject/cadastroAcompanhamento.dart';
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
 void main() {
@@ -22,7 +25,9 @@ void main() {
       '/paginaSintomas': (context) => PaginaSintomas(),
       '/paignaPrevencao': (context) => PaginaPrevencao(),
       '/paginaDados': (context) => PageDados(),
-      '/paginaGraficos': (context) => PaginaGraficos()
+      '/paginaGraficos': (context) => PaginaGraficos(),
+      '/paginaAcompanhamento': (context) => PaginaAcompanhamento(),
+      '/cadastro':(context) => CadastroAcompanhamento()
     },
   ));
 }

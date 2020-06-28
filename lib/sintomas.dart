@@ -76,7 +76,7 @@ class _PaginaSintomasState extends State<PaginaSintomas> {
                                 children: [
                                   GestureDetector(
                                     onTap: (){
-                                      _ackAlert(context, 'Sintomas Comuns', 'Febre\nTosse Seca\nCansaço');
+                                      ackAlert(context, 'Sintomas Comuns', 'Febre\nTosse Seca\nCansaço');
 
                                     },
                                     child: Card(
@@ -93,7 +93,7 @@ class _PaginaSintomasState extends State<PaginaSintomas> {
                                   ),
                                   GestureDetector(
                                     onTap: (){
-                                      _ackAlert(context, 'Sintomas Menos Comuns', 'Dores e desconfortos\nDor de garganta\nDiarreia\nConjuntivite\nDor de cabeça\nPerda de paladar ou olfato\nErupção cutânea na pele\nDescoloração dos dedos das mãos ou dos pés');
+                                      ackAlert(context, 'Sintomas Menos Comuns', 'Dores e desconfortos\nDor de garganta\nDiarreia\nConjuntivite\nDor de cabeça\nPerda de paladar ou olfato\nErupção cutânea na pele\nDescoloração dos dedos das mãos ou dos pés');
 
                                     },
                                     child: Card(
@@ -110,7 +110,7 @@ class _PaginaSintomasState extends State<PaginaSintomas> {
                                   ),
                                   GestureDetector(
                                     onTap: (){
-                                      _ackAlert(context, 'Sintomas Graves', 'Dificuldade de respirar ou falta de ar\nDor ou pressão no peito\nPerda de fala ou movimento');
+                                      ackAlert(context, 'Sintomas Graves', 'Dificuldade de respirar ou falta de ar\nDor ou pressão no peito\nPerda de fala ou movimento');
 
                                     },
                                     child: Card(
@@ -138,7 +138,7 @@ class _PaginaSintomasState extends State<PaginaSintomas> {
     }
 }
 
-Future<void> _ackAlert(context, titulo, texto) {
+Future<void> ackAlert(context, titulo, texto) {
   return showDialog<void>(
     context: context,
     builder: (BuildContext context) {
@@ -158,38 +158,3 @@ Future<void> _ackAlert(context, titulo, texto) {
     },
   );
 }
-
-/*
-ExpansionTile(
-                                    //leading: Icon(Icons.brightness_1, color: Colors.red,),
-                                    title: Text("Sintomas Comuns", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                                    children: <Widget>[
-                                      Text("Febre", style: TextStyle(fontSize: 16),),
-                                      Text("Tosse Seca", style: TextStyle(fontSize: 16),),
-                                      Text("Cansaço", style: TextStyle(fontSize: 16),),
-                                    ],
-                                  ),
-                                  ExpansionTile(
-                                    //leading: Icon(Icons.brightness_1, color: Colors.red,),
-                                    title: Text("Sintomas Menos Comuns", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                                    children: <Widget>[
-                                      Text("Dores e desconfortos", style: TextStyle(fontSize: 15),),
-                                      Text("Dor de garganta", style: TextStyle(fontSize: 15),),
-                                      Text("Diarreia", style: TextStyle(fontSize: 15),),
-                                      Text("Conjuntivite", style: TextStyle(fontSize: 15),),
-                                      Text("Dor de cabeça", style: TextStyle(fontSize: 15),),
-                                      Text("Perda de paladar ou olfato", style: TextStyle(fontSize: 15),),
-                                      Text("Erupção cutânea na pele", style: TextStyle(fontSize: 15),),
-                                      Text("Descoloração dos dedos das mãos ou dos pés", style: TextStyle(fontSize: 15),),
-                                    ],
-                                  ),
-                                  ExpansionTile(
-                                    //leading: Icon(Icons.brightness_1, color: Colors.red,),
-                                    title: Text("Sintomas Graves", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                                    children: <Widget>[
-                                      Text("Dificuldade de respirar ou falta de ar", style: TextStyle(fontSize: 16),),
-                                      Text("Dor ou pressão no peito", style: TextStyle(fontSize: 16),),
-                                      Text("Perda de fala ou movimento", style: TextStyle(fontSize: 16),),
-                                    ],
-                                  ),
- */

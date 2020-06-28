@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "772013963267",
+    "firebase_url": "https://covid-projet-rodolfodq.firebaseio.com",
+    "project_id": "covid-projet-rodolfodq",
+    "storage_bucket": "covid-projet-rodolfodq.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:772013963267:android:baa110a4ef1117f4713636",
+        "android_client_info": {
+          "package_name": "br.com.queiroz.covidproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "772013963267-croo15vee5qkrh644eahonktgituqukl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxj2sRlokVgiR5ToOM1XI55INkxpiFhBM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "772013963267-croo15vee5qkrh644eahonktgituqukl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
