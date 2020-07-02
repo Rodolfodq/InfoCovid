@@ -2,8 +2,25 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-class PaginaPrincipal extends StatelessWidget {
+
+class PaginaPrincipal extends StatefulWidget {
   @override
+  _PaginaPrincipalState createState() => _PaginaPrincipalState();
+}
+
+class _PaginaPrincipalState extends State<PaginaPrincipal> {
+
+  @override
+
+  int _menuForma = 1;
+  double _sizeFont = 22.0;
+
+  void alteraMenu(int menu, double fonte){
+    setState(() {
+      this._menuForma = menu;
+      this._sizeFont = fonte;
+    });
+  }
 
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,6 +29,18 @@ class PaginaPrincipal extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.cached),
+            tooltip: "Altera forma do menu",
+            onPressed: () {
+              if(_menuForma == 1){
+                alteraMenu(2, 15.0);
+
+              }
+              else{
+                alteraMenu(1, 22.0);
+              }
+            },),
           title: Text("Menu"),
           centerTitle: true,
           backgroundColor: Colors.black,
@@ -33,7 +62,7 @@ class PaginaPrincipal extends StatelessWidget {
               sliver: SliverGrid.count(
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
-                crossAxisCount: 1,
+                crossAxisCount: _menuForma,
                 children: <Widget>[
                   GestureDetector(
                     onTap: (){
@@ -53,7 +82,7 @@ class PaginaPrincipal extends StatelessWidget {
                               backgroundColor: Colors.black,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 22.0,
+                              fontSize: _sizeFont,
                             ),
                           ),
                         )
@@ -78,7 +107,32 @@ class PaginaPrincipal extends StatelessWidget {
                               backgroundColor: Colors.black,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 22.0,
+                              fontSize: _sizeFont,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, '/paginaMedicamentos');
+                    },
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          child: Image.asset('images/medicamentos.png'),
+                          color: Colors.black,
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Text("MEDICAMENTOS",
+                            style: TextStyle(
+                              backgroundColor: Colors.black,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: _sizeFont,
                             ),
                           ),
                         )
@@ -100,10 +154,10 @@ class PaginaPrincipal extends StatelessWidget {
                           alignment: Alignment.bottomCenter,
                           child: Text("PREVENÇÃO",
                             style: TextStyle(
-                                backgroundColor: Colors.black,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 22.0,
+                              backgroundColor: Colors.black,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: _sizeFont,
                             ),
                           ),
                         )
@@ -128,7 +182,7 @@ class PaginaPrincipal extends StatelessWidget {
                               backgroundColor: Colors.black,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 22.0,
+                              fontSize: _sizeFont,
                             ),
                           ),
                         )
@@ -145,7 +199,7 @@ class PaginaPrincipal extends StatelessWidget {
                           padding: const EdgeInsets.all(8),
                           child: Image.asset('images/sobre.png'),
                           color: Colors.black,
-                      ),
+                        ),
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: Text("SOBRE",
@@ -153,23 +207,13 @@ class PaginaPrincipal extends StatelessWidget {
                               backgroundColor: Colors.black,
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 22.0,
+                              fontSize: _sizeFont,
                             ),
                           ),
                         )
                       ],
                     ),
                   ),
-                  /*Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text('Revolution is coming...'),
-                    color: Colors.green[500],
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: const Text('Revolution, they...'),
-                    color: Colors.green[600],
-                  ),*/
                 ],
               ),
             ),
@@ -178,5 +222,4 @@ class PaginaPrincipal extends StatelessWidget {
       ),
     );
   }
-
 }

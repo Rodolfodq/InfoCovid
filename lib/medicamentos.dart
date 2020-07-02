@@ -1,22 +1,21 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'cadastroAcompanhamento.dart';
-import 'model/eventos.dart';
+import 'cadastroMedicamento.dart';
+import 'model/medicamento.dart';
 import 'main.dart';
 
-
-class PaginaAcompanhamento extends StatefulWidget {
+class Medicamentos extends StatefulWidget {
   @override
-  _PaginaAcompanhamentoState createState() => _PaginaAcompanhamentoState();
+  _MedicamentosState createState() => _MedicamentosState();
 }
 
-class _PaginaAcompanhamentoState extends State<PaginaAcompanhamento> {
+class _MedicamentosState extends State<Medicamentos> {
 
   final db = Firestore.instance;
-  final String colecao = "eventos";
+  final String colecao = "medicamentos";
 
-  List<Evento> lista = List();
+  List<Medicamento> lista = List();
 
   StreamSubscription<QuerySnapshot> listen;
 
@@ -29,7 +28,7 @@ class _PaginaAcompanhamentoState extends State<PaginaAcompanhamento> {
     listen = db.collection(colecao).snapshots().listen((res) {
       setState(() {
         lista = res.documents
-            .map((doc) => Evento.fromMap(doc.data, doc.documentID))
+            .map((doc) => Medicamento.fromMap(doc.data, doc.documentID))
             .toList();
       });
     });
@@ -41,11 +40,12 @@ class _PaginaAcompanhamentoState extends State<PaginaAcompanhamento> {
     super.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/cadastro':(context) => CadastroAcompanhamento(),
+        '/cadastroMedicamento':(context) => cadastroMedicamento(),
       },
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -58,7 +58,7 @@ class _PaginaAcompanhamentoState extends State<PaginaAcompanhamento> {
               Navigator.pop(context, true);
             },),
           automaticallyImplyLeading: false,
-          title: Text("Acompanhamentos"),
+          title: Text("Medicamentos"),
           centerTitle: true,
           backgroundColor: Colors.black,
           actions: <Widget>[
@@ -85,7 +85,7 @@ class _PaginaAcompanhamentoState extends State<PaginaAcompanhamento> {
                     itemBuilder: (context, index){
                       return ListTile(
                         title: Text(
-                          lista[index].observacao,
+                          lista[index].nome,
                           style: TextStyle(fontSize: 20),
                         ),
                         subtitle: Text(lista[index].dataHora, style: TextStyle(fontSize: 16)),
@@ -98,7 +98,7 @@ class _PaginaAcompanhamentoState extends State<PaginaAcompanhamento> {
                           ),
                         ),
                         onTap: (){
-                          print(lista[index].observacao);
+                          print(lista[index].nome);
                           print('Data: ' + lista[index].dataHora);
                           Navigator.pushNamed(
                               context,
@@ -119,7 +119,7 @@ class _PaginaAcompanhamentoState extends State<PaginaAcompanhamento> {
           elevation: 0,
           child: Icon(Icons.add),
           onPressed: (){
-            Navigator.pushNamed(context, '/cadastro', arguments: null);
+            Navigator.pushNamed(context, '/cadastroMedicamento', arguments: null);
           },
 
         ),

@@ -1,4 +1,6 @@
 //import 'dart:js';
+//import 'dart:js';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:covidproject/principal.dart';
@@ -9,7 +11,11 @@ import 'package:covidproject/dados.dart';
 import 'package:covidproject/graficos.dart';
 import 'package:covidproject/MeuAcompanhamento.dart';
 import 'package:covidproject/cadastroAcompanhamento.dart';
+import 'package:covidproject/medicamentos.dart';
+
 import 'package:flutter_web_browser/flutter_web_browser.dart';
+
+import 'cadastroMedicamento.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -27,7 +33,9 @@ void main() {
       '/paginaDados': (context) => PageDados(),
       '/paginaGraficos': (context) => PaginaGraficos(),
       '/paginaAcompanhamento': (context) => PaginaAcompanhamento(),
-      '/cadastro':(context) => CadastroAcompanhamento()
+      '/cadastro':(context) => CadastroAcompanhamento(),
+      '/paginaMedicamentos': (context) => Medicamentos(),
+      '/cadastroMedicamento':(context) => cadastroMedicamento()
     },
   ));
 }

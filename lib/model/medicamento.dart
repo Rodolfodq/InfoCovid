@@ -1,18 +1,18 @@
-class Evento{
+class Medicamento{
   String _id;
-  String _observacao;
+  String _nome;
   String _dataHora;
 
 
-  Evento(this._id, this._observacao, this._dataHora);
+  Medicamento(this._id, this._nome, this._dataHora);
 
   String get id => _id;
-  String get observacao => _observacao;
+  String get nome => _nome;
   String get dataHora => _dataHora;
 
-  Evento.map(dynamic obj){
+  Medicamento.map(dynamic obj){
     this._id = obj['id'];
-    this._observacao = obj['observacao'];
+    this._nome = obj['nome'];
     this._dataHora = obj['dataHora'];
   }
 
@@ -21,14 +21,14 @@ class Evento{
     if(_id != null){
       map['id'] = _id;
     }
-    map['observacao'] = _observacao;
+    map['nome'] = _nome;
     map['dataHora'] = _dataHora;
     return map;
   }
 
-  Evento.fromMap(Map<String, dynamic> map, String id){
+  Medicamento.fromMap(Map<String, dynamic> map, String id){
     this._id = id?? '';
-    this._observacao = map['observacao'];
+    this._nome = map['nome'];
     this._dataHora = map["dataHora"];
   }
 }

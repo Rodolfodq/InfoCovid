@@ -13,16 +13,12 @@ class CadastroAcompanhamento extends StatefulWidget {
 
 class _CadastroAcompanhamentoState extends State<CadastroAcompanhamento> {
 
-  TextEditingController txtNome = TextEditingController();
   TextEditingController txtObservacao = TextEditingController();
   TextEditingController txtDataHora = TextEditingController();
-
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   String _infoText;
 
   void resetField(){
-    txtNome.text = "";
     txtObservacao.text = "";
     txtDataHora.text = "";
   }
@@ -35,7 +31,6 @@ class _CadastroAcompanhamentoState extends State<CadastroAcompanhamento> {
     await db.collection("eventos").document(idDocumento).get();
 
     setState(() {
-      txtNome.text = doc.data['nome'];
       txtObservacao.text = doc.data['observacao'];
       txtDataHora.text = doc.data['datahora'];
     });
@@ -49,12 +44,11 @@ class _CadastroAcompanhamentoState extends State<CadastroAcompanhamento> {
         .arguments;
 
     if (idDocumento != null) {
-      if (txtNome.text == "" && txtObservacao.text == "" && txtDataHora == "") {
+      if (txtObservacao.text == "" && txtDataHora == "") {
         getDocumento(idDocumento);
       }
     }
     final format = DateFormat("dd-MM-yyyy - HH:mm ");
-    String strDtHr;
 
 
     return Scaffold(
@@ -81,13 +75,6 @@ class _CadastroAcompanhamentoState extends State<CadastroAcompanhamento> {
         padding: EdgeInsets.all(50),
         child: Column(
           children: [
-            TextField(
-              controller: txtNome,
-              style: TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
-              decoration: InputDecoration(
-                labelText: "Nome",
-              ),
-            ),
             SizedBox(
               height: 20,
             ),
@@ -140,16 +127,16 @@ class _CadastroAcompanhamentoState extends State<CadastroAcompanhamento> {
         elevation: 0,
         child: Icon(Icons.check),
         onPressed: (){
-          if(txtNome.text.isEmpty || txtObservacao.text.isEmpty || txtDataHora.text.isEmpty){
+          if(txtObservacao.text.isEmpty || txtDataHora.text.isEmpty){
             ackAlert(context, 'Dados incompletos', 'Informe todos os dados para prosseguir!');
           }else{
             if(idDocumento == null){
               inserir(context,
-                  Evento(idDocumento, txtNome.text,
+                  Evento(idDocumento,
                       txtObservacao.text, txtDataHora.text));
             }else{
               atualizar(context,
-                  Evento(idDocumento, txtNome.text,
+                  Evento(idDocumento,
                       txtObservacao.text, txtDataHora.text));
             }
           }
@@ -163,9 +150,8 @@ class _CadastroAcompanhamentoState extends State<CadastroAcompanhamento> {
   void inserir(BuildContext context, Evento evento) async{
     await db.collection("eventos").add(
       {
-        "nome": evento.nome,
         "observacao": evento.observacao,
-        "datahora": evento.dataHora,
+        "dataHora": evento.dataHora,
       }
     );
     Navigator.pop(context);
@@ -175,9 +161,8 @@ class _CadastroAcompanhamentoState extends State<CadastroAcompanhamento> {
     await db.collection("eventos").document(evento.id)
         .updateData(
         {
-          "nome": evento.nome,
           "observacao": evento.observacao,
-          "datahora": evento.dataHora,
+          "dataHora": evento.dataHora,
         }
     );
     Navigator.pop(context);
