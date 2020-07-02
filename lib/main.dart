@@ -12,6 +12,8 @@ import 'package:covidproject/graficos.dart';
 import 'package:covidproject/MeuAcompanhamento.dart';
 import 'package:covidproject/cadastroAcompanhamento.dart';
 import 'package:covidproject/medicamentos.dart';
+import 'package:covidproject/historicoSaude.dart';
+import 'package:covidproject/cadastroHistorico.dart';
 
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
@@ -35,7 +37,9 @@ void main() {
       '/paginaAcompanhamento': (context) => PaginaAcompanhamento(),
       '/cadastro':(context) => CadastroAcompanhamento(),
       '/paginaMedicamentos': (context) => Medicamentos(),
-      '/cadastroMedicamento':(context) => cadastroMedicamento()
+      '/cadastroMedicamento':(context) => cadastroMedicamento(),
+      '/paginaHistorico': (context) => paginaHistorico(),
+      '/cadastroHistorico':(context) => cadastroHistorico()
     },
   ));
 }

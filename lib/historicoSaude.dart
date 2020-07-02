@@ -1,21 +1,21 @@
-import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:covidproject/model/historico.dart';
 import 'package:flutter/material.dart';
-import 'cadastroMedicamento.dart';
-import 'model/medicamento.dart';
-import 'main.dart';
+import 'package:covidproject/cadastroHistorico.dart';
+import 'dart:async';
 
-class Medicamentos extends StatefulWidget {
+
+class paginaHistorico extends StatefulWidget {
   @override
-  _MedicamentosState createState() => _MedicamentosState();
+  _paginaHistoricoState createState() => _paginaHistoricoState();
 }
 
-class _MedicamentosState extends State<Medicamentos> {
+class _paginaHistoricoState extends State<paginaHistorico> {
 
   final db = Firestore.instance;
-  final String colecao = "medicamentos";
+  final String colecao = "historico";
 
-  List<Medicamento> lista = List();
+  List<Historico> lista = List();
 
   StreamSubscription<QuerySnapshot> listen;
 
@@ -28,7 +28,7 @@ class _MedicamentosState extends State<Medicamentos> {
     listen = db.collection(colecao).snapshots().listen((res) {
       setState(() {
         lista = res.documents
-            .map((doc) => Medicamento.fromMap(doc.data, doc.documentID))
+            .map((doc) => Historico.fromMap(doc.data, doc.documentID))
             .toList();
       });
     });
@@ -40,11 +40,12 @@ class _MedicamentosState extends State<Medicamentos> {
     super.dispose();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        '/cadastroMedicamento':(context) => cadastroMedicamento(),
+        '/cadastroHistorico':(context) => cadastroHistorico(),
       },
       debugShowCheckedModeBanner: false,
       home: Scaffold(
@@ -57,7 +58,7 @@ class _MedicamentosState extends State<Medicamentos> {
               Navigator.pop(context, true);
             },),
           automaticallyImplyLeading: false,
-          title: Text("Medicamentos"),
+          title: Text("Histórico Médico"),
           centerTitle: true,
           backgroundColor: Colors.black,
           actions: <Widget>[
@@ -87,7 +88,7 @@ class _MedicamentosState extends State<Medicamentos> {
                           lista[index].nome,
                           style: TextStyle(fontSize: 20),
                         ),
-                        subtitle: Text(lista[index].dataHora, style: TextStyle(fontSize: 16)),
+                        subtitle: Text(lista[index].informacoes, style: TextStyle(fontSize: 16)),
                         trailing: IconButton(
                           icon: IconButton(
                             icon: Icon(Icons.delete),
@@ -98,10 +99,10 @@ class _MedicamentosState extends State<Medicamentos> {
                         ),
                         onTap: (){
                           print(lista[index].nome);
-                          print('Data: ' + lista[index].dataHora);
+                          print('Data: ' + lista[index].informacoes);
                           Navigator.pushNamed(
                               context,
-                              "/cadastro",
+                              "/cadastroHistorico",
                               arguments: lista[index].id
                           );
                         },
@@ -118,7 +119,7 @@ class _MedicamentosState extends State<Medicamentos> {
           elevation: 0,
           child: Icon(Icons.add),
           onPressed: (){
-            Navigator.pushNamed(context, '/cadastroMedicamento', arguments: null);
+            Navigator.pushNamed(context, "/cadastroHistorico", arguments: null);
           },
 
         ),

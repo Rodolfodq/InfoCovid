@@ -14,11 +14,13 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
 
   int _menuForma = 1;
   double _sizeFont = 22.0;
+  IconData _icone = Icons.apps;
 
-  void alteraMenu(int menu, double fonte){
+  void alteraMenu(int menu, double fonte, IconData icone){
     setState(() {
       this._menuForma = menu;
       this._sizeFont = fonte;
+      this._icone = icone;
     });
   }
 
@@ -30,15 +32,15 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
         backgroundColor: Colors.black,
         appBar: AppBar(
           leading: IconButton(
-            icon: Icon(Icons.cached),
+            icon: Icon(_icone),
             tooltip: "Altera forma do menu",
             onPressed: () {
               if(_menuForma == 1){
-                alteraMenu(2, 15.0);
+                alteraMenu(2, 15.0, Icons.menu);
 
               }
               else{
-                alteraMenu(1, 22.0);
+                alteraMenu(1, 22.0, Icons.apps);
               }
             },),
           title: Text("Menu"),
@@ -128,6 +130,31 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
                         Align(
                           alignment: Alignment.bottomCenter,
                           child: Text("MEDICAMENTOS",
+                            style: TextStyle(
+                              backgroundColor: Colors.black,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: _sizeFont,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pushNamed(context, '/paginaHistorico');
+                    },
+                    child: Stack(
+                      children: <Widget>[
+                        Container(
+                          padding: const EdgeInsets.all(8),
+                          child: Image.asset('images/reports.png'),
+                          color: Colors.black,
+                        ),
+                        Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Text("HISTÓRICO DE SAÚDE",
                             style: TextStyle(
                               backgroundColor: Colors.black,
                               color: Colors.white,

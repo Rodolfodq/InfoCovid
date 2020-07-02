@@ -67,6 +67,7 @@ flutter:
     - images/Sobre/github.png
     - images/Sobre/linkedin.png
     - images/medicamentos.png
+    - images/reports.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
