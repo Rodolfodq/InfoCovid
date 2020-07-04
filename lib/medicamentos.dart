@@ -97,11 +97,9 @@ class _MedicamentosState extends State<Medicamentos> {
                           ),
                         ),
                         onTap: (){
-                          print(lista[index].nome);
-                          print('Data: ' + lista[index].dataHora);
                           Navigator.pushNamed(
                               context,
-                              "/cadastro",
+                              "/cadastroMedicamento",
                               arguments: lista[index].id
                           );
                         },

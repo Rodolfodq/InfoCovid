@@ -1,6 +1,9 @@
 //import 'dart:js';
 //import 'dart:js';
 
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:covidproject/principal.dart';
@@ -14,6 +17,7 @@ import 'package:covidproject/cadastroAcompanhamento.dart';
 import 'package:covidproject/medicamentos.dart';
 import 'package:covidproject/historicoSaude.dart';
 import 'package:covidproject/cadastroHistorico.dart';
+import 'package:covidproject/model/loginFirebase.dart';
 
 import 'package:flutter_web_browser/flutter_web_browser.dart';
 
@@ -54,6 +58,35 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+
+  final db = Firestore.instance;
+  final String colecao = "login";
+
+  List<Login> lista = List();
+
+  StreamSubscription<QuerySnapshot> listen;
+
+  @override
+  void initState() {
+    super.initState();
+
+    listen?.cancel();
+
+    listen = db.collection(colecao).snapshots().listen((res) {
+      setState(() {
+        lista = res.documents
+            .map((doc) => Login.fromMap(doc.data, doc.documentID))
+            .toList();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    listen?.cancel();
+    super.dispose();
+  }
+
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   TextEditingController emailController = TextEditingController();
   TextEditingController senhaController = TextEditingController();
@@ -67,8 +100,18 @@ class _MyAppState extends State<MyApp> {
 
   }
 
-  void _logar(){
-    Navigator.pushNamed(context, '/paginaPrincipal');
+  //int index = 0;
+
+  Future _logar(String usuario, String senha) async{
+    for(int i = 0; i < lista.length; i++){
+      if(usuario == lista[i].user && senha == lista[i].password){
+        Navigator.pushNamed(context, '/paginaPrincipal');
+        break;
+      }
+      else{
+        ackAlert(context, "Login inválido", "Usuário ou senha incorretos.");
+      }
+    }
   }
 
   @override
@@ -135,7 +178,7 @@ class _MyAppState extends State<MyApp> {
                   child: RaisedButton(
                     onPressed: () {
                       if(_formKey.currentState.validate()){
-                        _logar();
+                        _logar(emailController.text, senhaController.text);
                       }
                     }, //enviar dados
                     child: Text(

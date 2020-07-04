@@ -98,8 +98,6 @@ class _paginaHistoricoState extends State<paginaHistorico> {
                           ),
                         ),
                         onTap: (){
-                          print(lista[index].nome);
-                          print('Data: ' + lista[index].informacoes);
                           Navigator.pushNamed(
                               context,
                               "/cadastroHistorico",

@@ -19,29 +19,20 @@ var dicionario;
 Future countriesDados(country) async {
   request_dados = 'https://api.covid19api.com/dayone/country/$country';
   http.Response response = await http.get(request_dados);
-  //print(json.decode(response.body));
-  //print(response.runtimeType);
-  //print(response.body);
-  //print(response.body[25773].isNotEmpty);
-  int i = 0;
-  Map<int, List> dict = Map();
+  List<dynamic> body = jsonDecode(response.body);
+
   int confirmados, mortes, recuperados, ativos;
-  var data, data2, format_data;
-  //DateTime format_data;
-  do {
-    confirmados = json.decode(response.body)[i]["Confirmed"]; // dict[i][0]
-    mortes = json.decode(response.body)[i]["Deaths"]; // // dict[i][1]
-    recuperados = json.decode(response.body)[i]["Recovered"]; // dict[i][2]
-    ativos = json.decode(response.body)[i]["Active"]; // dict[i][3]
-    data2 = json.decode(response.body)[i]["Date"];
-    data = data2.substring(0,10);// dict[i][4]
-    dict[0] = [confirmados, mortes, recuperados, ativos, data];
-    i++;
-  } while (i < 109);
+  var data, data2;
+  List<dynamic> dict;
 
+  confirmados = body[body.length-1]["Confirmed"];
+  mortes = body[body.length-1]["Deaths"];
+  recuperados = body[body.length-1]["Recovered"];
+  ativos = body[body.length-1]["Active"];
+  data2 = body[body.length-1]["Date"];
+  data = data2.substring(0,10);// dict[i][4]
+  dict = [confirmados, mortes, recuperados, ativos, data];
 
-  //print("Print type");
-  //print(dict.runtimeType);
   return dict;
 }
 
@@ -113,24 +104,12 @@ class _PaginaGraficosState extends State<PaginaGraficos> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            /*Card(
-                              child: Container(
-                                padding: EdgeInsets.all(20.0),
-                                child: Row(
-                                  children: <Widget>[
-                                    Text(
-                                      "Informações sobre: $country"
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),*/
                             Card(
                               child: Container(
                                 padding: EdgeInsets.all(20.0),
                                 child: Counter(
                                   color: Colors.red,
-                                  number: snapshot.data[0][3],
+                                  number: snapshot.data[3],
                                   title: "Ativos",
                                 ),
                               ),
@@ -141,7 +120,7 @@ class _PaginaGraficosState extends State<PaginaGraficos> {
                                 padding: EdgeInsets.all(20.0),
                                 child: Counter(
                                   color: Colors.black,
-                                  number:snapshot.data[0][1],
+                                  number:snapshot.data[1],
                                   title: "Mortes",
                                 ),
                               ),
@@ -152,7 +131,7 @@ class _PaginaGraficosState extends State<PaginaGraficos> {
                                 padding: EdgeInsets.all(20.0),
                                 child: Counter(
                                   color: Colors.green,
-                                  number: snapshot.data[0][2],
+                                  number: snapshot.data[2],
                                   title: "Recuperados",
                                 ),
                               ),
@@ -162,7 +141,7 @@ class _PaginaGraficosState extends State<PaginaGraficos> {
                                 padding: EdgeInsets.all(20.0),
                                 child: Counter(
                                   color: Colors.orange,
-                                  number: snapshot.data[0][0],
+                                  number: snapshot.data[0],
                                   title: "Confirmados",
                                 ),
                               ),
@@ -172,7 +151,7 @@ class _PaginaGraficosState extends State<PaginaGraficos> {
                                 padding: EdgeInsets.all(25.0),
                                 child: Row(
                                   children: <Widget>[
-                                    Text("Última atualização: \n" + snapshot.data[0][4],
+                                    Text("Última atualização: \n" + snapshot.data[4],
                                         style: TextStyle(color: Colors.black,
                                             fontWeight: FontWeight.bold)),
                                   ],

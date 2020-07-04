@@ -98,8 +98,6 @@ class _PaginaAcompanhamentoState extends State<PaginaAcompanhamento> {
                           ),
                         ),
                         onTap: (){
-                          print(lista[index].observacao);
-                          print('Data: ' + lista[index].dataHora);
                           Navigator.pushNamed(
                               context,
                               "/cadastro",
