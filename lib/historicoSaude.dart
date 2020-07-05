@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidproject/model/historico.dart';
 import 'package:flutter/material.dart';
-import 'package:covidproject/cadastroHistorico.dart';
 import 'dart:async';
 
 
@@ -43,12 +42,7 @@ class _paginaHistoricoState extends State<paginaHistorico> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        '/cadastroHistorico':(context) => cadastroHistorico(),
-      },
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: IconButton(
@@ -119,10 +113,8 @@ class _paginaHistoricoState extends State<paginaHistorico> {
           onPressed: (){
             Navigator.pushNamed(context, "/cadastroHistorico", arguments: null);
           },
-
         ),
+      );
 
-      ),
-    );
   }
 }

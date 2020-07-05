@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'cadastroAcompanhamento.dart';
 import 'model/eventos.dart';
-import 'main.dart';
 
 
 class PaginaAcompanhamento extends StatefulWidget {
@@ -43,12 +41,7 @@ class _PaginaAcompanhamentoState extends State<PaginaAcompanhamento> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        '/cadastro':(context) => CadastroAcompanhamento(),
-      },
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: IconButton(
@@ -122,7 +115,7 @@ class _PaginaAcompanhamentoState extends State<PaginaAcompanhamento> {
 
         ),
 
-      ),
-    );
+      );
+
   }
 }

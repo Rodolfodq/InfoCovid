@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-
-
 class PaginaPrincipal extends StatefulWidget {
   @override
   _PaginaPrincipalState createState() => _PaginaPrincipalState();
@@ -25,10 +23,7 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
   }
 
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
           leading: IconButton(
@@ -246,7 +241,6 @@ class _PaginaPrincipalState extends State<PaginaPrincipal> {
             ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

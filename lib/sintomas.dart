@@ -10,9 +10,7 @@ class _PaginaSintomasState extends State<PaginaSintomas> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
+    return Scaffold(
           backgroundColor: Colors.black,
           appBar: AppBar(
             leading: IconButton(
@@ -130,10 +128,8 @@ class _PaginaSintomasState extends State<PaginaSintomas> {
                             )
                           ]
                       ))
-                ]))
-
-
-
+                ]
+            )
     );
     }
 }

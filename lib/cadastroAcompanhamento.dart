@@ -3,7 +3,6 @@ import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'model/eventos.dart';
 import 'package:intl/intl.dart';
-import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:covidproject/sintomas.dart';
 
 class CadastroAcompanhamento extends StatefulWidget {

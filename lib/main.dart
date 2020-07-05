@@ -1,8 +1,4 @@
-//import 'dart:js';
-//import 'dart:js';
-
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -18,18 +14,14 @@ import 'package:covidproject/medicamentos.dart';
 import 'package:covidproject/historicoSaude.dart';
 import 'package:covidproject/cadastroHistorico.dart';
 import 'package:covidproject/model/loginFirebase.dart';
-
 import 'package:flutter_web_browser/flutter_web_browser.dart';
-
 import 'cadastroMedicamento.dart';
 
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: "Projeto Covid - Login",
+    title: "Info Covid-19 - Login",
     initialRoute: '/login',
-    //initialRoute: '/paginaPrincipal',
-    //initialRoute: '/paginaDados',
     routes: {
       '/login': (context) => MyApp(),
       '/paginaPrincipal': (context) => PaginaPrincipal(),
@@ -99,8 +91,6 @@ class _MyAppState extends State<MyApp> {
     });
 
   }
-
-  //int index = 0;
 
   Future _logar(String usuario, String senha) async{
     for(int i = 0; i < lista.length; i++){

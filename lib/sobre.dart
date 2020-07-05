@@ -1,14 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:async/async.dart';
 import 'package:covidproject/main.dart';
 
 class PaginaSobre extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.black,
         appBar: AppBar(
           leading: IconButton(
@@ -117,11 +114,7 @@ class PaginaSobre extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        );
-
-
-
+          );
   }
 }
 

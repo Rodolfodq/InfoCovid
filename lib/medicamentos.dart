@@ -1,9 +1,7 @@
 import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'cadastroMedicamento.dart';
 import 'model/medicamento.dart';
-import 'main.dart';
 
 class Medicamentos extends StatefulWidget {
   @override
@@ -42,12 +40,7 @@ class _MedicamentosState extends State<Medicamentos> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: {
-        '/cadastroMedicamento':(context) => cadastroMedicamento(),
-      },
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           leading: IconButton(
@@ -121,7 +114,7 @@ class _MedicamentosState extends State<Medicamentos> {
 
         ),
 
-      ),
-    );
+      );
+
   }
 }

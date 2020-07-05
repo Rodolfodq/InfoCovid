@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:covidproject/model/historico.dart';
 import 'package:flutter/material.dart';
 import 'sintomas.dart';
-import 'historicoSaude.dart';
 
 class cadastroHistorico extends StatefulWidget {
   @override
